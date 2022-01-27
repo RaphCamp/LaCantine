@@ -13,7 +13,7 @@ public class Utilisateur
     public string Nom { get => Nom; set => Nom = value; }
     public string Prenom { get => Prenom; set => Prenom = value; }
     public DateTime DateDeNaissance { get => DateDeNaissance; set => DateDeNaissance = value; }
-    public List<Commande> LesCommandes { get => LesCommandes; set => LesCommandes = value; }
+    public List<Commandes> LesCommandes { get => LesCommandes; set => LesCommandes = value; }
 
     public Utilisateur()
 	{
