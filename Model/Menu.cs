@@ -17,6 +17,6 @@ namespace LaCantine.Model
 
         public string Date { get; set; }
 
-        public List<Plat> LesPlats {get; set; }
+        public List<Plats> LesPlats {get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaCantine.Model;
+using System;
 using System.Collections.Generic;
 
 public class Utilisateur
