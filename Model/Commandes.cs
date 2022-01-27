@@ -7,8 +7,6 @@ namespace LaCantine.Model
 {
     public class Commandes
     {
-        
-
         public int ID { get => ID; set => ID = value; }
         public DateTime Date { get => Date; set => Date = value; }
         public string Statut { get => Statut; set => Statut = value; }
