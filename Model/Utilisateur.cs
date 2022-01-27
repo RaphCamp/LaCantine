@@ -3,16 +3,16 @@
 public class Utilisateur
 {
     
-    public int Id { get => id; set => id = value; }
-    public string Mail { get => mail; set => mail = value; }
-    public string NumTel { get => numTel; set => numTel = value; }
-    public string Password { get => password; set => password = value; }
-    public string Login { get => login; set => login = value; }
-    public double Solde { get => solde; set => solde = value; }
-    public string Nom { get => nom; set => nom = value; }
-    public string Prenom { get => prenom; set => prenom = value; }
-    public DateTime DateDeNaissance { get => dateDeNaissance; set => dateDeNaissance = value; }
-    public List<Commande> LesCommandes { get => lesCommandes; set => lesCommandes = value; }
+    public int Id { get => Id; set => Id = value; }
+    public string Mail { get => Mail; set => Mail = value; }
+    public string NumTel { get => NumTel; set => NumTel = value; }
+    public string Password { get => Password; set => Password = value; }
+    public string Login { get => Login; set => Login = value; }
+    public double Solde { get => Solde; set => Solde = value; }
+    public string Nom { get => Nom; set => Nom = value; }
+    public string Prenom { get => Prenom; set => Prenom = value; }
+    public DateTime DateDeNaissance { get => DateDeNaissance; set => DateDeNaissance = value; }
+    public List<Commande> LesCommandes { get => LesCommandes; set => LesCommandes = value; }
 
     public Utilisateur()
 	{
