@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using LaCantine.Data;
+using LaCantine.Model;
 
 namespace LaCantine
 {
@@ -32,6 +35,9 @@ namespace LaCantine
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LaCantine", Version = "v1" });
             });
+
+            services.AddDbContext<LaCantineContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("LaCantineContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
