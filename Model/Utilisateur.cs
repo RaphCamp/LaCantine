@@ -19,5 +19,20 @@ namespace LaCantine.Model
         public DateTime DateDeNaissance { get => DateDeNaissance; set => DateDeNaissance = value; }
         public List<Commandes> LesCommandes { get => LesCommandes; set => LesCommandes = value; }
 
+       
+        public void RetirerSolde(Utilisateur utilisateur, double montant)
+        {
+            Utilisateur user = utilisateur;
+            if (montant < user.Solde)
+            {
+                user.Solde = user.Solde - montant;
+            }
+        }
+
+        public void AjouterSolde(Utilisateur utilisateur, double montant)
+        {
+            Utilisateur user = utilisateur;
+            user.Solde += montant;
+        }
     }
 }

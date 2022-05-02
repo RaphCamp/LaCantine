@@ -105,22 +105,5 @@ namespace LaCantine.Controllers
             return _context.Utilisateur.Any(e => e.Id == id);
         }
 
-
-        //retirer le solde d'un utilisateur 
-        public void RetirerSolde(Utilisateur utilisateur, double montant )
-        {
-            Utilisateur user = utilisateur;
-            if(montant < user.Solde)
-            {
-                user.Solde = user.Solde - montant;
-            }
-        }
-
-        public void AjouterSolde(Utilisateur utilisateur, double montant)
-        {
-            Utilisateur user = utilisateur;
-            user.Solde += montant;
-        }
-
     }
 }
