@@ -40,7 +40,7 @@ namespace LaCantine
             services.AddDbContext<LaCantineContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("LaCantineContext")));
             services.AddScoped<ICommandesService, CommandesService>();
-            services.AddScoped<ICommandesRepository, TestRepository>();
+            services.AddScoped<ICommandesRepository, DBCommandesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
