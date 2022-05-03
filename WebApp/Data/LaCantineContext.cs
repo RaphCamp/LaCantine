@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using LaCantine.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace LaCantine.Data
 {
-    public class LaCantineContext : DbContext
+    public class LaCantineContext : IdentityDbContext<IdentityUser>
     {
         public LaCantineContext (DbContextOptions<LaCantineContext> options)
             : base(options)

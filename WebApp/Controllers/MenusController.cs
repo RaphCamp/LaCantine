@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LaCantine.Data;
 using LaCantine.Model;
+using LaCantine.Service;
 
 namespace LaCantine.Controllers
 {
@@ -15,10 +16,12 @@ namespace LaCantine.Controllers
     public class MenusController : ControllerBase
     {
         private readonly LaCantineContext _context;
+        private readonly IMenuService service;
 
-        public MenusController(LaCantineContext context)
+        public MenusController(LaCantineContext context,IMenuService service)
         {
             _context = context;
+            this.service = service;
         }
 
         // GET: api/Menus
@@ -32,7 +35,7 @@ namespace LaCantine.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Menu>> GetMenu(int id)
         {
-            var menu = await _context.Menu.FindAsync(id);
+            var menu = await service.GetMenu(id);
 
             if (menu == null)
             {

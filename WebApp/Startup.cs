@@ -15,6 +15,9 @@ using Microsoft.EntityFrameworkCore;
 using LaCantine.Data;
 using LaCantine.Model;
 using LaCantine.Service;
+using SampleJwtApp.Security.Services;
+using Microsoft.AspNetCore.Identity;
+using SampleJwtApp.Security.DataAccess;
 
 namespace LaCantine
 {
@@ -41,6 +44,44 @@ namespace LaCantine
                     options.UseSqlServer(Configuration.GetConnectionString("LaCantineContext")));
             services.AddScoped<ICommandesService, CommandesService>();
             services.AddScoped<ICommandesRepository, DBCommandesRepository>();
+            services.AddScoped<IMenuService, MenuService>();
+            services.AddScoped<IMenusRepository, DBMenuRepository>();
+            services.AddTransient<ISecurityService, SecurityService>();
+            services.AddControllers();
+
+            // Add Identity implementation
+            services
+                .AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<AppDbContext>();
+
+            // Add JWT authentication
+            //services
+            //    .AddAuthentication(options =>
+            //    {
+            //        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    })
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.SaveToken = true;
+            //        options.RequireHttpsMetadata = false;
+            //        options.TokenValidationParameters = new TokenValidationParameters()
+            //        {
+            //            ValidateIssuerSigningKey =
+            //                bool.Parse(Configuration["JsonWebTokenKeys:ValidateIssuerSigningKey"]),
+            //            IssuerSigningKey =
+            //                new SymmetricSecurityKey(
+            //                    Encoding.UTF8.GetBytes(Configuration["JsonWebTokenKeys:SymmetricKey"])),
+            //            ValidateIssuer = bool.Parse(Configuration["JsonWebTokenKeys:ValidateIssuer"]),
+            //            ValidAudience = Configuration["JsonWebTokenKeys:ValidAudience"],
+            //            ValidIssuer = Configuration["JsonWebTokenKeys:ValidIssuer"],
+            //            ValidateAudience = bool.Parse(Configuration["JsonWebTokenKeys:ValidateAudience"]),
+            //            RequireExpirationTime = bool.Parse(Configuration["JsonWebTokenKeys:RequireExpirationTime"]),
+            //            ValidateLifetime = bool.Parse(Configuration["JsonWebTokenKeys:ValidateLifetime"])
+            //        };
+            //    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,5 +105,7 @@ namespace LaCantine
                 endpoints.MapControllers();
             });
         }
+      
+        
     }
 }
