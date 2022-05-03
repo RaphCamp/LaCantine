@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LaCantineTest
 {
     [TestClass]
-    public class UnitTest1
+    public class CommandesControllerTest
     {
         [TestMethod]
         public void TestMethod1()

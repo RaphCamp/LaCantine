@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LaCantine.Data;
 using LaCantine.Model;
+using LaCantine.Service;
 
 namespace LaCantine.Controllers
 {
@@ -15,10 +16,12 @@ namespace LaCantine.Controllers
     public class CommandesController : ControllerBase
     {
         private readonly LaCantineContext _context;
+        private readonly ICommandesService service;
 
-        public CommandesController(LaCantineContext context)
+        public CommandesController(LaCantineContext context , ICommandesService service)
         {
             _context = context;
+            this.service = service;
         }
 
         // GET: api/Commandes
@@ -32,7 +35,7 @@ namespace LaCantine.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Commandes>> GetCommandes(int id)
         {
-            var commandes = await _context.Commandes.FindAsync(id);
+            var commandes = service.GetCommandes(id);
 
             if (commandes == null)
             {
