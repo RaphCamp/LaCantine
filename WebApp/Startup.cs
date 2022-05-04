@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using LaCantine.Security.Services;
 
 namespace LaCantine
 {
@@ -75,6 +76,7 @@ namespace LaCantine
             services.AddScoped<IMenusRepository, DBMenuRepository>();
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddControllers();
+            services.AddScoped<IEmailSender, EmailSender>();
 
             // Add Identity implementation
             services

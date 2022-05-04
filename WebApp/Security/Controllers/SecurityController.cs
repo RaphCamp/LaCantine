@@ -14,6 +14,13 @@ using Microsoft.IdentityModel.Tokens;
 using SampleJwtApp.Common;
 using SampleJwtApp.Security.Services;
 using SampleJwtApp.Security.ViewModels;
+using LaCantine.Security.Services;
+using System.Web.Http;
+using AllowAnonymousAttribute = Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+using FromBodyAttribute = Microsoft.AspNetCore.Mvc.FromBodyAttribute;
+
 namespace SampleJwtApp.Security.Controllers
 {
     /// <summary>
@@ -25,10 +32,12 @@ namespace SampleJwtApp.Security.Controllers
     public class SecurityController : ControllerBase
     {
         private readonly ISecurityService securityService;
+        private readonly IEmailSender emailSender;
 
-        public SecurityController(ISecurityService securityService)
+        public SecurityController(ISecurityService securityService, IEmailSender emailSender)
         {
             this.securityService = securityService ?? throw new ArgumentNullException(nameof(securityService));
+            this.emailSender = emailSender;
         }
 
         /// <summary>
@@ -104,5 +113,20 @@ namespace SampleJwtApp.Security.Controllers
                 status = "Login successful, token issued, send it back in a Bearer header to authenticate subsequent requests"
             });
         }
+
+        //envoyer mail oubli mdp
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("account/send-email")]
+        public async Task<IActionResult> SendEmailAsync([FromUri] string email, string subject, string message)
+        {
+            await emailSender.SendEmail(email, subject, message);
+            return Ok();
+        }
+
+        //reset password
+
+
+        //changer mdp
     }
 }
