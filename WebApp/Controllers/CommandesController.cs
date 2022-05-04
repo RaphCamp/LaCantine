@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using LaCantine.Data;
 using LaCantine.Model;
 using LaCantine.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LaCantine.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CommandesController : ControllerBase
     {
         private readonly LaCantineContext _context;
