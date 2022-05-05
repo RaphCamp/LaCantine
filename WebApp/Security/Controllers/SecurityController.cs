@@ -120,16 +120,38 @@ namespace SampleJwtApp.Security.Controllers
         }
 
         //envoyer mail oubli mdp
-        [AllowAnonymous]
+/*        [AllowAnonymous]
         [HttpPost]
         [Route("account/send-email")]
         public async Task<IActionResult> SendEmailAsync([FromUri] string email, string subject, string message)
         {
             await emailSender.SendEmail(email, subject, message);
             return Ok();
-        }
+        }*/
 
         //reset password
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("account/send-email")]
+        public async Task<IActionResult> SendEmailAsync(string email)
+        {
+            if(email != null)
+            {
+                await securityService.SendResetPasswordEmailLink(email);
+                return Ok();
+            }
+            return BadRequest();
+        }
+
         //changer mdp
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("account/reset-password")]
+        public async Task<IActionResult> SendEmailAsync(string userName, string password, string token)
+        {
+            await securityService.ResetPassword(userName, token,password);
+            return Ok();
+        }
     }
 }

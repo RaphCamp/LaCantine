@@ -24,7 +24,7 @@ namespace LaCantine.Security.Services
             _configuration = configuration;
             
         }
-        public async Task SendEmail(string email, string subject, string message)
+        public async Task<bool> SendEmail(string email, string subject, string message)
         {
             using (var client = new SmtpClient())
             {
@@ -45,10 +45,12 @@ namespace LaCantine.Security.Services
                     emailMessage.From = new MailAddress(_configuration["Email:Email"]);
                     emailMessage.Subject = subject;
                     emailMessage.Body = message;
-                    client.Send(emailMessage);
+                    await client.SendMailAsync(emailMessage);
                 }
             }
-            await Task.CompletedTask;
+            return true;
         }
+
+
     }
 }

@@ -8,6 +8,6 @@ namespace LaCantine.Security.Services
 {
     public interface IEmailSender
     {
-        Task SendEmail(string email, string subject, string message);
+        Task<bool> SendEmail(string email, string subject, string message);
     }
 }

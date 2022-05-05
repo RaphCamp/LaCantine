@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using LaCantine.Security.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -16,12 +17,14 @@ namespace SampleJwtApp.Security.Services
         private readonly UserManager<IdentityUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration configuration;
+        private IEmailSender sender;
 
-        public SecurityService(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public SecurityService(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IEmailSender sender)
         {
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             this.roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            this.sender = sender;
         }
 
         public async Task<bool> UserExistsAsync(string userName)
@@ -94,6 +97,26 @@ namespace SampleJwtApp.Security.Services
             );
 
             return token;
+        }
+
+        public async Task<bool> SendResetPasswordEmailLink(string email)
+        {
+            var user = userManager.Users.First(u => u.Email == email);
+            var token = await userManager.GeneratePasswordResetTokenAsync(user);
+
+            // TODO: enter the correct page url (this is your front-end page, not the API endpoint !)
+            // TODO: you should get the base url from the configuration
+            var url = $"http://localhost:5234/reset-password?username={user.UserName}&token={token}";
+            return await sender.SendEmail(email, "Reset password", "Please confirm by clicking the following link.\r\n\r\n" + url);
+        }
+
+
+
+        public async Task<bool> ResetPassword(string userName, string token, string newPassword)
+        {
+            var user = userManager.Users.First(u => u.UserName == userName);
+            var result = await userManager.ResetPasswordAsync(user, token, newPassword);
+            return result.Succeeded;
         }
     }
 }
