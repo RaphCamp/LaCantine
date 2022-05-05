@@ -130,23 +130,6 @@ namespace SampleJwtApp.Security.Controllers
         }
 
         //reset password
-
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("account/reset-password")]
-        public async Task<IActionResult> ResetAsync(Utilisateur user,string sBaseUrl )
-        {
-
-            var token = await securityService.BuildJwtTokenAsync(user);
-
-
-            await emailSender.ResetPassword( user, sBaseUrl);
-            return Ok();
-        }
-
-
-
-
         //changer mdp
     }
 }

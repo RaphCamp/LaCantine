@@ -22,7 +22,6 @@ namespace LaCantine.Security.Services
         public EmailSender(IConfiguration configuration)
         {
             _configuration = configuration;
-            Utilisateur user = new Utilisateur(); 
             
         }
         public async Task SendEmail(string email, string subject, string message)
@@ -50,18 +49,6 @@ namespace LaCantine.Security.Services
                 }
             }
             await Task.CompletedTask;
-        }
-
-
-
-        public async Task ResetPassword(Utilisateur user, string sBaseUrl, string token )
-        {
-            
-            var callbackUrl = string.Format("{0}#!/set-password?id={1}&token={2}", sBaseUrl, user.Id, HttpUtility.UrlEncode(token));
-            var subject = "Réinitialiser le mot de passe ";
-            var body = string.Format(@"Réinitialiser le mot de passe en cliquant ici : <a href=""{0}"">{0}</a>", callbackUrl);
-            await this.SendEmail(user.Mail, subject, body);
-
         }
     }
 }

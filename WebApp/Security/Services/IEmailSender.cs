@@ -9,7 +9,5 @@ namespace LaCantine.Security.Services
     public interface IEmailSender
     {
         Task SendEmail(string email, string subject, string message);
-
-        Task ResetPassword(Utilisateur user, string sBaseUrl , string token );
     }
 }
