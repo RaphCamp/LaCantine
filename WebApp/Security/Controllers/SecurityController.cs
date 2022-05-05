@@ -35,10 +35,12 @@ namespace SampleJwtApp.Security.Controllers
     {
         private readonly ISecurityService securityService;
         private readonly IEmailSender emailSender;
-        private UserManager<Utilisateur> _userManager;
 
         public SecurityController(ISecurityService securityService, IEmailSender emailSender)
         {
+            
+
+
             this.securityService = securityService ?? throw new ArgumentNullException(nameof(securityService));
             this.emailSender = emailSender;
         }
@@ -129,16 +131,17 @@ namespace SampleJwtApp.Security.Controllers
 
         //reset password
 
-        public async Task ResetPassword(Utilisateur user, string sBaseUrl)
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("account/reset-password")]
+        public async Task<IActionResult> ResetAsync(Utilisateur user,string sBaseUrl )
         {
-            await _userManager.UpdateSecurityStampAsync(user);
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var callbackUrl = string.Format("{0}#!/set-password?id={1}&token={2}", sBaseUrl, user.Id, HttpUtility.UrlEncode(token));
-            var subject = "Réinitialiser le mot de passe ";
-            var body = string.Format(@"Réinitialiser le mot de passe en cliquant ici : <a href=""{0}"">{0}</a>", callbackUrl);
-            await emailSender.SendEmail(user.Mail, subject, body);
+            var token = await securityService.BuildJwtTokenAsync(user);
 
+
+            await emailSender.ResetPassword( user, sBaseUrl);
+            return Ok();
         }
 
 

@@ -1,20 +1,29 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using LaCantine.Data;
+using LaCantine.Model;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace LaCantine.Security.Services
 {
     public class EmailSender : IEmailSender
     {
         private readonly IConfiguration _configuration;
+
         public EmailSender(IConfiguration configuration)
         {
             _configuration = configuration;
+            Utilisateur user = new Utilisateur(); 
+            
         }
         public async Task SendEmail(string email, string subject, string message)
         {
@@ -41,6 +50,18 @@ namespace LaCantine.Security.Services
                 }
             }
             await Task.CompletedTask;
+        }
+
+
+
+        public async Task ResetPassword(Utilisateur user, string sBaseUrl, string token )
+        {
+            
+            var callbackUrl = string.Format("{0}#!/set-password?id={1}&token={2}", sBaseUrl, user.Id, HttpUtility.UrlEncode(token));
+            var subject = "Réinitialiser le mot de passe ";
+            var body = string.Format(@"Réinitialiser le mot de passe en cliquant ici : <a href=""{0}"">{0}</a>", callbackUrl);
+            await this.SendEmail(user.Mail, subject, body);
+
         }
     }
 }
