@@ -32,3 +32,23 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '**/*LaCantineTest/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage"'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage'
+
+  inputs:
+    codeCoverageTool: Cobertura
+    pathToSources: $(Build.Repository.LocalPath)
+    summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'

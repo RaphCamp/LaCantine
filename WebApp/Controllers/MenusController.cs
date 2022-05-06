@@ -26,6 +26,7 @@ namespace LaCantine.Controllers
 
         // GET: api/Menus
         [HttpGet]
+        [Route("Public")]
         public async Task<ActionResult<IEnumerable<Menu>>> GetMenu()
         {
             return await _context.Menu.ToListAsync();

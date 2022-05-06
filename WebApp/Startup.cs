@@ -21,6 +21,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using LaCantine.Security.Services;
+using System.Reflection;
+using System.IO;
 
 namespace LaCantine
 {
@@ -30,14 +32,30 @@ namespace LaCantine
         {
             Configuration = configuration;
         }
-
+        public string corsOrigin = "corsOrigin";
         public IConfiguration Configuration { get; }
+        public object WebApplication { get; private set; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: corsOrigin,
+                    policy =>
+                    {
+                        policy
+                .AllowAnyOrigin()
+               // .WithOrigins(Configuration["Front:BaseUrl"])
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+                    });
+            });
+
             services.AddControllers();
+            //services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LaCantine", Version = "v1" });
@@ -128,6 +146,8 @@ namespace LaCantine
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseCors(corsOrigin);
 
             app.UseEndpoints(endpoints =>
             {
