@@ -1,0 +1,21 @@
+#login {
+    margin: auto;
+    padding: 10px;
+    border: none;
+}
+#loginContainer {
+    background-color:rgb(255, 255, 255);
+    margin: auto;
+    max-width: 300px;
+    height: auto;
+    border-radius: 7px;
+    border: 3px black solid;
+
+}
+#contour {
+    border: none;
+}
+#profile-img {
+    border-radius: 150px;
+    border: 2px black solid;
+}

@@ -1,0 +1,66 @@
+.body {
+  width: auto;
+  max-width: 95%;
+  margin: auto;
+
+}
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid cadetblue;
+    width: 400px;
+    background-color: rgb(245, 245, 245 , 0.9);
+    border-radius: 10px;
+  }
+  
+  div.gallery:hover {
+    border: 3px solid cadetblue;
+  }
+  
+  div.gallery img {
+    width: 100%;
+    height: auto;
+  }
+  
+  div.desc {
+    padding: 15px;
+    text-align: center;
+  }
+
+  button.selected {
+    background-color: black;
+    color: white;
+  }
+
+  #menuTitle {
+    text-decoration:none; 
+    color:cadetblue;
+  }
+  #menuTitle :hover {
+    font-size: x-large;
+  }
+
+  #platTitle {
+    text-decoration:none; 
+    color:cadetblue;
+  }
+  #platTitle :hover {
+    font-size: x-large;
+  }
+
+  h2 {
+    color: darkgreen;
+    text-align: center;
+  }
+
+  .card-header {
+    text-align: center;
+  }
+
+  #platsDuMenu {
+    text-decoration:none; 
+    color:cadetblue;
+  }
+  #platsDuMenu :hover {
+    font-size: x-large;
+  }

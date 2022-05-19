@@ -1,0 +1,61 @@
+<div class="body">
+  <h2>Les Menus</h2>
+ 
+  <div  class="d-flex flex-row justify-content-center flex-wrap" >
+    <div *ngFor="let menu of menus " class="p-2" >
+        <div class="card bg-light mb-3" class="gallery" >
+          <div class="card-header" >
+            <a id="menuTitle" routerLink="/menu/{{menu.id}}" ><h5>{{menu.name | uppercase}} </h5></a> <p>({{menu.prix}}€)</p>         
+          </div>
+          <div class="card-body">
+            <ul>
+              <div *ngFor="let platMenu of menu.plats ">
+                <li>
+                  <a id="platsDuMenu" routerLink="/plat/{{platMenu.id}}" ><p>{{platMenu.name | uppercase}}</p> </a>         
+                </li>
+              </div>
+            </ul>
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <h2>Les Plats</h2>
+
+  <div class="boite" class="d-flex flex-row justify-content-center flex-wrap">
+    <div *ngFor="let plat of plats | callback:noFreeFood" class="p-2" >
+        <div class="card bg-light mb-3" class="gallery" >
+          <div class="card-header" >
+            <a id="platTitle" routerLink="/plat/{{plat.id}}" ><h5>{{plat.name | uppercase}}</h5></a>  <p>({{plat.prix}}€)</p>        
+          </div>
+          <div class="d-block user-select-none">
+            <a target="_blank" href="{{plat.photo}}">
+              <img src="{{plat.photo}}" alt="{{plat.name}}" width="600" height="400">
+            </a>
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{plat.desc}}</p>
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+  
+  <!-- Ajout de Plat-->
+ <div>
+  <label for="new-plat">Nom du plat: </label>
+  <input id="new-plat" #platName />
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="addPlat(platName.value); platName.value=''">
+    Ajouter
+  </button>
+ </div>
+</div>
+
+
+
+
+   

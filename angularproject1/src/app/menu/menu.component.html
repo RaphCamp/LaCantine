@@ -1,0 +1,24 @@
+<div class="body" *ngIf="menu">
+  
+    <h1>{{menu.name | uppercase}}</h1>
+
+    <div  class="d-flex flex-row justify-content-center flex-wrap" >
+        <div *ngFor="let plat of menu.plats ; let index = index;" class="p-2">
+            <div class="card bg-light mb-3" class="gallery" >
+              <div class="card-body" >
+                <a id="menuTitle" routerLink="/plat/{{plat.id}}" ><h5>{{plat.name | uppercase}} </h5></a>
+                <p>prix: {{plat.prix}}€</p>
+                <p>description: {{plat.desc}}</p> 
+                    <div class="form-group" >
+                      <label for="power">Remplacer ce plat par</label>
+                      <select class="form-control" name="s{{index}}" [(ngModel)]="menu.plats[index]"  placeholder="item" >
+                      <option [ngValue]="newPlat"  *ngFor="let newPlat of allPlats">{{newPlat.name}}</option>
+                      </select>
+                    </div> 
+              </div>
+          </div>
+        </div>
+      </div>
+</div>
+<button type="button" (click)="save()">save</button>
+<button type="button" (click)="goBack()">go back</button>
