@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url("./assets/Fond2.jpg");
+    background-size: cover;
+    backdrop-filter: opacity(2%);
+    background-attachment: fixed;
+}
+#filtreTransparent {
+    background-color: rgb(240, 248, 255,0.7);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
