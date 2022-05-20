@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaCantine", "WebApp\LaCanti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaCantineTest", "LaCantineTest\LaCantineTest.csproj", "{DE8C7AC9-2DF7-4058-80EB-C9DF893828B4}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "angularproject1", "angularproject1\angularproject1.esproj", "{1232C949-1E5B-4E79-A256-0A5F022D744F}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "LaCantineFront", "angularproject1\LaCantineFront.esproj", "{1232C949-1E5B-4E79-A256-0A5F022D744F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
