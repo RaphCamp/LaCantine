@@ -51,7 +51,7 @@ namespace LaCantine.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMenu(int id, Menu menu)
         {
-            if (id != menu.ID)
+            if (id != menu.id)
             {
                 return BadRequest();
             }
@@ -85,7 +85,7 @@ namespace LaCantine.Controllers
             _context.Menu.Add(menu);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMenu", new { id = menu.ID }, menu);
+            return CreatedAtAction("GetMenu", new { id = menu.id }, menu);
         }
 
         // DELETE: api/Menus/5
@@ -106,7 +106,7 @@ namespace LaCantine.Controllers
 
         private bool MenuExists(int id)
         {
-            return _context.Menu.Any(e => e.ID == id);
+            return _context.Menu.Any(e => e.id == id);
         }
     }
 }

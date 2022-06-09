@@ -47,7 +47,7 @@ namespace LaCantine.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlats(int id, Plats plats)
         {
-            if (id != plats.ID)
+            if (id != plats.id)
             {
                 return BadRequest();
             }
@@ -81,7 +81,7 @@ namespace LaCantine.Controllers
             _context.Plats.Add(plats);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPlats", new { id = plats.ID }, plats);
+            return CreatedAtAction("GetPlats", new { id = plats.id }, plats);
         }
 
         // DELETE: api/Plats/5
@@ -102,7 +102,7 @@ namespace LaCantine.Controllers
 
         private bool PlatsExists(int id)
         {
-            return _context.Plats.Any(e => e.ID == id);
+            return _context.Plats.Any(e => e.id == id);
         }
     }
 }

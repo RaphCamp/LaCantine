@@ -16,7 +16,7 @@ namespace LaCantine.Data
 
         public Task<Menu> GetMenuForID(int id)
         {
-            return Task.FromResult(context.Menu.FirstOrDefault(f => f.ID == id));
+            return Task.FromResult(context.Menu.FirstOrDefault(f => f.id == id));
         }
     }
 }

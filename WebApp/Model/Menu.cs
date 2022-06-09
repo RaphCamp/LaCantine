@@ -8,15 +8,14 @@ namespace LaCantine.Model
 {
     public class Menu
     {
+        public int id { get; set; }
 
-        public int ID { get; set; }
+        public string name { get; set; }
+        public List<Plats> plats { get; set; }
 
-        public string Libelle { get; set; }
+        public int prix { get; set; }
 
-        public int Prix { get; set; }
-
-        public string Date { get; set; }
-
-        public List<Plats> LesPlats {get; set; }
+/*        public string Date { get; set; }
+*/
     }
 }
