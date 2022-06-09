@@ -3,7 +3,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 
-import { Plat } from '../models/plat';
+import { Plat } from '../models/plat.model';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
@@ -25,7 +25,8 @@ export class PlatService {
     this.messageService.add(`PlatService: ${message}`);
   }
 
-  private platsUrl = 'api/plats';
+  readonly platsUrl = 'https://localhost:5001/api/Plats';
+
 
   getPlats(): Observable<Plat[]> {
     const plats = this.http.get<Plat[]>(this.platsUrl).pipe(tap(_ => this.log('fetched plats')), catchError(this.handleError<Plat[]>('getPlats', []))
@@ -67,14 +68,16 @@ export class PlatService {
 
   updatePlat(plat: Plat): Observable<any> {
     return this.http.put(this.platsUrl, plat, this.httpOptions).pipe(
-      tap(_ => this.log(`updated plat id=${plat.id}`)),
+      tap(_ => this.log(`updated plat id=${plat.ID}`)),
       catchError(this.handleError<any>('updatePlat'))
     );
   }
 
+  formData: Plat = { ID: 0, Libelle: ' ', Description: ' ', Image: " ", Prix: 0 };
+;
   addPlat(plat: Plat): Observable<any> {
     return this.http.post<Plat>(this.platsUrl, plat, this.httpOptions).pipe(
-      tap((newPlat: Plat) => this.log(`added pice w/ id=${newPlat.id}`)),
+      tap((newPlat: Plat) => this.log(`added pice w/ id=${newPlat.ID}`)),
       catchError(this.handleError<Plat>("addPlat"))
     );
   }

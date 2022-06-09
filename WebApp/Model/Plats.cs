@@ -12,14 +12,15 @@ namespace LaCantine.Model
         
         public string Libelle { get; set; }
 
-        public double Prix { get; set; }
-
         public string Description { get; set; }
 
-        [Column(TypeName = "Produits Allergenes")]
-        public List<Produits_Allergenes> Produits_Allergenes { get; set; }
-
         public string Image { get; set; }
+
+        public double Prix { get; set; }
+
+        
+     /*   [Column(TypeName = "Produits Allergenes")]
+        public List<Produits_Allergenes> Produits_Allergenes { get; set; }*/
     }
 }
 

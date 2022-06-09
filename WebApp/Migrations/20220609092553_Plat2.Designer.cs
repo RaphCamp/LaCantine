@@ -4,14 +4,16 @@ using LaCantine.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LaCantine.Migrations
 {
     [DbContext(typeof(LaCantineContext))]
-    partial class LaCantineContextModelSnapshot : ModelSnapshot
+    [Migration("20220609092553_Plat2")]
+    partial class Plat2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

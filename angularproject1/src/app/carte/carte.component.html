@@ -11,7 +11,7 @@
             <ul>
               <div *ngFor="let platMenu of menu.plats ">
                 <li>
-                  <a id="platsDuMenu" routerLink="/plat/{{platMenu.id}}" ><p>{{platMenu.name | uppercase}}</p> </a>         
+                  <a id="platsDuMenu" routerLink="/plat/{{platMenu.ID}}" ><p>{{platMenu.Libelle | uppercase}}</p> </a>         
                 </li>
               </div>
             </ul>
@@ -28,15 +28,15 @@
     <div *ngFor="let plat of plats | callback:noFreeFood" class="p-2" >
         <div class="card bg-light mb-3" class="gallery" >
           <div class="card-header" >
-            <a id="platTitle" routerLink="/plat/{{plat.id}}" ><h5>{{plat.name | uppercase}}</h5></a>  <p>({{plat.prix}}€)</p>        
+            <a id="platTitle" routerLink="/plat/{{plat.ID}}" ><h5>{{plat.Libelle | uppercase}}</h5></a>  <p>({{plat.Prix}}€)</p>        
           </div>
           <div class="d-block user-select-none">
-            <a target="_blank" href="{{plat.photo}}">
-              <img src="{{plat.photo}}" alt="{{plat.name}}" width="600" height="400">
+            <a target="_blank" href="{{plat.Image}}">
+              <img src="{{plat.Image}}" alt="{{plat.Libelle}}" width="600" height="400">
             </a>
           </div>
           <div class="card-body">
-            <p class="card-text">{{plat.desc}}</p>
+            <p class="card-text">{{plat.Description}}</p>
           </div>
 
       </div>
@@ -58,4 +58,3 @@
 
 
 
-   

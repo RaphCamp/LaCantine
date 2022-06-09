@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Plat } from '../models/plat';
+import { Plat } from '../models/plat.model';
 import { Menu } from '../models/menu';
 
 @Injectable({
@@ -9,18 +9,18 @@ import { Menu } from '../models/menu';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const plats: Plat[] = [
-      { id: 0, name: ' ', desc: ' ', photo: " ", prix: 0 },
-      { id: 1, name: 'Frites', desc: 'seulement avec burger', photo: "../../assets/rizotto.jpg", prix: 0},
-      { id: 11, name: 'Rizotto', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 16},
-      { id: 12, name: 'Poulet Roti', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 18},
-      { id: 13, name: 'Fondant Chocolat', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 13},
-      { id: 14, name: 'Nems', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 13},
-      { id: 15, name: 'Tomates provencales', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 12},
-      { id: 16, name: 'Burger', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 11},
-      { id: 17, name: 'Tarte au Citron', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 13},
-      { id: 18, name: 'Truffade', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 50},
-      { id: 19, name: 'Salade', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 12},
-      { id: 20, name: 'Escargots qui crient', desc: 'très bon très bon', photo: "../../assets/rizotto.jpg", prix: 20},
+      { ID: 0, Libelle: ' ', Description: ' ', Image: " ", Prix: 0 },
+      { ID: 1, Libelle: 'Frites', Description: 'seulement avec burger', Image: "../../assets/rizotto.jpg", Prix: 0},
+      { ID: 11, Libelle: 'Rizotto', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 16},
+      { ID: 12, Libelle: 'Poulet Roti', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 18},
+      { ID: 13, Libelle: 'Fondant Chocolat', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 13},
+      { ID: 14, Libelle: 'Nems', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 13},
+      { ID: 15, Libelle: 'Tomates provencales', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 12},
+      { ID: 16, Libelle: 'Burger', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 11},
+      { ID: 17, Libelle: 'Tarte au Citron', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 13},
+      { ID: 18, Libelle: 'Truffade', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 50},
+      { ID: 19, Libelle: 'Salade', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 12},
+      { ID: 20, Libelle: 'Escargots qui crient', Description: 'très bon très bon', Image: "../../assets/rizotto.jpg", Prix: 20},
     ];
     const menus: Menu[] = [
       { id: 11, name: 'Ptite Faim Salée',plats : [plats[5],plats[2]], prix: 16},
@@ -31,12 +31,12 @@ export class InMemoryDataService implements InMemoryDbService {
     return { plats,menus };
   }
 
-  // Overrides the genId method to ensure that a hero always has an id.
-  // If the heroes array is empty,
+  // Overrides the genId method to ensure that a plat always has an id.
+  // If the plates array is empty,
   // the method below returns the initial number (11).
-  // if the heroes array is not empty, the method below returns the highest
-  // hero id + 1.
+  // if the plates array is not empty, the method below returns the highest
+  // plat id + 1.
   genId(pieces: Plat[]): number {
-    return pieces.length > 0 ? Math.max(...pieces.map(piece => piece.id)) + 1 : 11;
+    return pieces.length > 0 ? Math.max(...pieces.map(piece => piece.ID)) + 1 : 11;
   }
 }

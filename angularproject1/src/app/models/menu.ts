@@ -1,4 +1,4 @@
-import { Plat } from "./plat";
+import { Plat } from "./plat.model";
 
 export interface Menu {
     id: number;

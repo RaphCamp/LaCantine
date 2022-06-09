@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 
-import { Plat } from '../models/plat';
+import { Plat } from '../models/plat.model';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PlatService } from '../Services/plat.service';
@@ -40,7 +40,7 @@ export class PlatComponent implements OnInit {
 
   save(): void {
     if (this.plat) {
-      if (!Number(this.plat.prix)) {
+      if (!Number(this.plat.Prix)) {
         this.dialog.closeAll();
         window.scroll(0,0);
         this.openDialog();
@@ -52,7 +52,7 @@ export class PlatComponent implements OnInit {
   }
 
   delete(plat: Plat): void {
-    this.platService.deletePlat(plat.id).subscribe(() => this.goBack());
+    this.platService.deletePlat(plat.ID).subscribe(() => this.goBack());
   }
 
   //dialog

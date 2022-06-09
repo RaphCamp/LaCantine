@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Plat } from '../models/plat';
+import { Plat } from '../models/plat.model';
 import { Menu } from '../models/menu';
 
 import { PlatService } from '../Services/plat.service';
@@ -43,13 +43,14 @@ export class CarteComponent implements OnInit {
   addPlat(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    this.platService.addPlat({ name ,prix:999} as Plat).subscribe(plat => {
+    this.platService.addPlat({ Libelle: name, Prix: 999 } as Plat).subscribe(
+      plat => {
       this.plats.push(plat);
     });
   }
 
   noFreeFood(plat :Plat){
-    return plat.prix > 0;
+    return plat.Prix > 0;
   }
 
 

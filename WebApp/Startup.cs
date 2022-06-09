@@ -147,7 +147,8 @@ namespace LaCantine
 
             app.UseAuthorization();
             
-            app.UseCors(corsOrigin);
+            app.UseCors(option =>
+            option.WithOrigins("https://localhost:4200").AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,21 +1,21 @@
 
 <div class="body" *ngIf="plat">
   
-    <h1 id="top">{{plat.name | uppercase}}</h1>
+  <h1 id="top">{{plat.Libelle | uppercase}}</h1>
     <div id="haut" class="d-flex flex-row justify-content-center" >
             <div id="photo" class="card bg-light mb-3">
                 <div class="card-header" > <h4>Photo</h4></div>
                 <div class="card-body">
-                    <a target="_blank" href="{{plat.photo}}">
-                        <img id="photoProfil" src="{{plat.photo}}" alt="{{plat.name}}" width="600" height="400" />
+                    <a target="_blank" href="{{plat.Image}}">
+                        <img id="photoProfil" src="{{plat.Image}}" alt="{{plat.Libelle}}" width="600" height="400" />
                       </a>    
                 </div>
             </div>
             <div id="description" class="card text-white bg-dark mb-3"> 
                 <div class="card-header" > <h4>Description</h4></div>
                 <div class="card-body">
-                   <p class="card-text">{{plat.desc}}</p>
-                   <textarea  maxlength="499" id="desc" [minRows]="5" [maxRows]="8" autosize  [(ngModel)]="plat.desc" placeholder="description">
+                  <p class="card-text">{{plat.Description}}</p>
+                   <textarea  maxlength="499" id="desc" [minRows]="5" [maxRows]="8" autosize  [(ngModel)]="plat.Description" placeholder="description">
                 </textarea>
                 </div>
             </div>
@@ -23,8 +23,8 @@
                 <div class="card-header" > <h4>Informations</h4></div>
                 <div id="prix" class="card-body">
                     <h5>Prix :</h5>
-                    <p class="card-text"> {{plat.prix}} euros </p>
-                    <input id="name" [(ngModel)]="plat.prix" placeholder="prix">
+                    <p class="card-text"> {{plat.Prix}} euros </p>
+                    <input id="name" [(ngModel)]="plat.Prix" placeholder="prix">
                 </div>
             </div>    
         </div>
@@ -32,7 +32,7 @@
     <div id="modifier">
 
       <label for="name">Nom du plat: </label>
-      <input id="name" [(ngModel)]="plat.name" placeholder="name">
+      <input id="name" [(ngModel)]="plat.Libelle" placeholder="name">
     </div>
     
     <br>

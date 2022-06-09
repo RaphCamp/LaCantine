@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PlatService } from '../Services/plat.service';
 import { MenuService } from '../Services/menu.service';
-import { Plat } from '../models/plat';
+import { Plat } from '../models/plat.model';
 
 
 

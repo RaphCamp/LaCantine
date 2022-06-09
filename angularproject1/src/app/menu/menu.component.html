@@ -6,13 +6,13 @@
         <div *ngFor="let plat of menu.plats ; let index = index;" class="p-2">
             <div class="card bg-light mb-3" class="gallery" >
               <div class="card-body" >
-                <a id="menuTitle" routerLink="/plat/{{plat.id}}" ><h5>{{plat.name | uppercase}} </h5></a>
-                <p>prix: {{plat.prix}}€</p>
-                <p>description: {{plat.desc}}</p> 
+                <a id="menuTitle" routerLink="/plat/{{plat.ID}}" ><h5>{{plat.Libelle | uppercase}} </h5></a>
+                <p>prix: {{plat.Prix}}€</p>
+                <p>description: {{plat.Description}}</p> 
                     <div class="form-group" >
                       <label for="power">Remplacer ce plat par</label>
                       <select class="form-control" name="s{{index}}" [(ngModel)]="menu.plats[index]"  placeholder="item" >
-                      <option [ngValue]="newPlat"  *ngFor="let newPlat of allPlats">{{newPlat.name}}</option>
+                        <option [ngValue]="newPlat" *ngFor="let newPlat of allPlats">{{newPlat.Libelle}}</option>
                       </select>
                     </div> 
               </div>
