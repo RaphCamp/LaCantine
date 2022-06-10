@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LaCantine.Migrations
 {
     [DbContext(typeof(LaCantineContext))]
-    [Migration("20220504074039_Securitysetup")]
-    partial class Securitysetup
+    [Migration("20220609141745_002")]
+    partial class _002
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,7 +49,7 @@ namespace LaCantine.Migrations
 
             modelBuilder.Entity("LaCantine.Model.Menu", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -57,16 +57,13 @@ namespace LaCantine.Migrations
                     b.Property<int?>("CommandesID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Date")
+                    b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Libelle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Prix")
+                    b.Property<int>("prix")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("id");
 
                     b.HasIndex("CommandesID");
 
@@ -75,7 +72,7 @@ namespace LaCantine.Migrations
 
             modelBuilder.Entity("LaCantine.Model.Plats", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -83,26 +80,21 @@ namespace LaCantine.Migrations
                     b.Property<int?>("CommandesID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("desc")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Libelle")
+                    b.Property<string>("photo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MenuID")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Prix")
+                    b.Property<double>("prix")
                         .HasColumnType("float");
 
-                    b.HasKey("ID");
+                    b.HasKey("id");
 
                     b.HasIndex("CommandesID");
-
-                    b.HasIndex("MenuID");
 
                     b.ToTable("Plats");
                 });
@@ -114,15 +106,10 @@ namespace LaCantine.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PlatsID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Produit")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("PlatsID");
 
                     b.ToTable("Produits_Allergenes");
                 });
@@ -161,6 +148,21 @@ namespace LaCantine.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Utilisateur");
+                });
+
+            modelBuilder.Entity("MenuPlats", b =>
+                {
+                    b.Property<int>("menusid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("platsid")
+                        .HasColumnType("int");
+
+                    b.HasKey("menusid", "platsid");
+
+                    b.HasIndex("platsid");
+
+                    b.ToTable("MenuPlats");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -378,17 +380,21 @@ namespace LaCantine.Migrations
                     b.HasOne("LaCantine.Model.Commandes", null)
                         .WithMany("LesPlats")
                         .HasForeignKey("CommandesID");
-
-                    b.HasOne("LaCantine.Model.Menu", null)
-                        .WithMany("LesPlats")
-                        .HasForeignKey("MenuID");
                 });
 
-            modelBuilder.Entity("LaCantine.Model.Produits_Allergenes", b =>
+            modelBuilder.Entity("MenuPlats", b =>
                 {
+                    b.HasOne("LaCantine.Model.Menu", null)
+                        .WithMany()
+                        .HasForeignKey("menusid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("LaCantine.Model.Plats", null)
-                        .WithMany("Produits_Allergenes")
-                        .HasForeignKey("PlatsID");
+                        .WithMany()
+                        .HasForeignKey("platsid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -447,16 +453,6 @@ namespace LaCantine.Migrations
                     b.Navigation("LesMenus");
 
                     b.Navigation("LesPlats");
-                });
-
-            modelBuilder.Entity("LaCantine.Model.Menu", b =>
-                {
-                    b.Navigation("LesPlats");
-                });
-
-            modelBuilder.Entity("LaCantine.Model.Plats", b =>
-                {
-                    b.Navigation("Produits_Allergenes");
                 });
 
             modelBuilder.Entity("LaCantine.Model.Utilisateur", b =>

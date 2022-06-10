@@ -4,14 +4,16 @@ using LaCantine.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LaCantine.Migrations
 {
     [DbContext(typeof(LaCantineContext))]
-    partial class LaCantineContextModelSnapshot : ModelSnapshot
+    [Migration("20220609134036_001")]
+    partial class _001
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,6 +80,9 @@ namespace LaCantine.Migrations
                     b.Property<int?>("CommandesID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Menuid")
+                        .HasColumnType("int");
+
                     b.Property<string>("desc")
                         .HasColumnType("nvarchar(max)");
 
@@ -93,6 +98,8 @@ namespace LaCantine.Migrations
                     b.HasKey("id");
 
                     b.HasIndex("CommandesID");
+
+                    b.HasIndex("Menuid");
 
                     b.ToTable("Plats");
                 });
@@ -146,21 +153,6 @@ namespace LaCantine.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Utilisateur");
-                });
-
-            modelBuilder.Entity("MenuPlats", b =>
-                {
-                    b.Property<int>("menusid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("platsid")
-                        .HasColumnType("int");
-
-                    b.HasKey("menusid", "platsid");
-
-                    b.HasIndex("platsid");
-
-                    b.ToTable("MenuPlats");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -378,21 +370,10 @@ namespace LaCantine.Migrations
                     b.HasOne("LaCantine.Model.Commandes", null)
                         .WithMany("LesPlats")
                         .HasForeignKey("CommandesID");
-                });
 
-            modelBuilder.Entity("MenuPlats", b =>
-                {
                     b.HasOne("LaCantine.Model.Menu", null)
-                        .WithMany()
-                        .HasForeignKey("menusid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LaCantine.Model.Plats", null)
-                        .WithMany()
-                        .HasForeignKey("platsid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("plats")
+                        .HasForeignKey("Menuid");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -451,6 +432,11 @@ namespace LaCantine.Migrations
                     b.Navigation("LesMenus");
 
                     b.Navigation("LesPlats");
+                });
+
+            modelBuilder.Entity("LaCantine.Model.Menu", b =>
+                {
+                    b.Navigation("plats");
                 });
 
             modelBuilder.Entity("LaCantine.Model.Utilisateur", b =>

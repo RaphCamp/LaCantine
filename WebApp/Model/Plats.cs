@@ -14,6 +14,7 @@ namespace LaCantine.Model
         public string photo { get; set; }
         public double prix { get; set; }
 
+        public virtual ICollection<Menu> menus { get; set; }
 
 /*        [Column(TypeName = "Produits Allergenes")]
         public List<Produits_Allergenes> Produits_Allergenes { get; set; }

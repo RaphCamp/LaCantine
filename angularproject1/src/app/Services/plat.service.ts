@@ -25,7 +25,7 @@ export class PlatService {
     this.messageService.add(`PlatService: ${message}`);
   }
 
-  private platsUrl = 'api/plats';
+  private platsUrl = 'https://localhost:5001/api/plats';
 
   getPlats(): Observable<Plat[]> {
     const plats = this.http.get<Plat[]>(this.platsUrl).pipe(tap(_ => this.log('fetched plats')), catchError(this.handleError<Plat[]>('getPlats', []))
@@ -66,7 +66,9 @@ export class PlatService {
   };
 
   updatePlat(plat: Plat): Observable<any> {
-    return this.http.put(this.platsUrl, plat, this.httpOptions).pipe(
+    const url = `${this.platsUrl}/${plat.id}`;
+
+    return this.http.put(url, plat, this.httpOptions).pipe(
       tap(_ => this.log(`updated plat id=${plat.id}`)),
       catchError(this.handleError<any>('updatePlat'))
     );

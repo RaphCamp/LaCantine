@@ -24,7 +24,7 @@ export class MenuService {
     this.messageService.add(`MenuService: ${message}`);
   }
 
-  private menusUrl = 'api/menus';
+  private menusUrl = 'https://localhost:5001/api/Menus';
 
   getMenus(): Observable<Menu[]> {
     const menus = this.http.get<Menu[]>(this.menusUrl).pipe(tap(_ => this.log('fetched menus')), catchError(this.handleError<Menu[]>('getMenus', []))
