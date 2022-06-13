@@ -65,7 +65,9 @@ export class MenuService {
   };
 
   updateMenu(menu: Menu): Observable<any> {
-    return this.http.put(this.menusUrl, menu, this.httpOptions).pipe(
+    const url = `${this.menusUrl}/${menu.id}`;
+
+    return this.http.put(url, menu, this.httpOptions).pipe(
       tap(_ => this.log(`updated menu id=${menu.id}`)),
       catchError(this.handleError<any>('updateMenu'))
     );
