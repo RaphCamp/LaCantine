@@ -15,7 +15,10 @@ namespace LaCantine.Model
 
         public int prix { get; set; }
 
-/*        public string Date { get; set; }
-*/
+        public virtual ICollection<Commandes> commandes { get; set; }
+
+
+        /*        public string Date { get; set; }
+        */
     }
 }

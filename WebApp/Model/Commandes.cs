@@ -11,7 +11,7 @@ namespace LaCantine.Model
         public DateTime Date { get; set; }
         public string Statut { get; set; }
         public double PrixTotal { get; set; }
-        public List<Menu> LesMenus { get; set; }
-        public List<Plats> LesPlats { get; set; }
+        public virtual ICollection<Menu> LesMenus { get; set; }
+        public virtual ICollection<Plats> LesPlats { get; set; }
     }
 }
