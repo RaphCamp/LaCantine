@@ -17,9 +17,6 @@ namespace LaCantine.Model
         public virtual ICollection<Menu> menus { get; set; }
         public virtual ICollection<Commandes> commandes { get; set; }
 
-        /*        [Column(TypeName = "Produits Allergenes")]
-                public List<Produits_Allergenes> Produits_Allergenes { get; set; }
-        */
     }
 }
 
