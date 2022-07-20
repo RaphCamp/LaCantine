@@ -24,6 +24,7 @@ import { RegisterComponent } from './connexion/register/register.component';
 import { ProfileComponent } from './connexion/profile/profile.component';
 import { HomeComponent } from './connexion/home/home.component';
 import { BoardAdminComponent } from './connexion/board-admin/board-admin.component';
+import { SoldeComponent } from './solde/solde.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { BoardAdminComponent } from './connexion/board-admin/board-admin.compone
     ProfileComponent,
     HomeComponent,
     BoardAdminComponent,
+    SoldeComponent,
   ],
   imports: [
     BrowserModule,

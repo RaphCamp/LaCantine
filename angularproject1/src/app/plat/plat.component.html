@@ -11,13 +11,21 @@
                       </a>    
                 </div>
             </div>
-            <div id="description" class="card text-white bg-dark mb-3"> 
-                <div class="card-header" > <h4>Description</h4></div>
-                <div class="card-body">
-                   <p class="card-text">{{plat.desc}}</p>
-                   <textarea  maxlength="499" id="desc" [minRows]="5" [maxRows]="8" autosize  [(ngModel)]="plat.desc" placeholder="description">
+            <div id="description" class="card text-white bg-dark mb-3">
+             
+              <div class="card-header"> <h4>Description</h4></div>
+              <div class="card-body">
+                <p class="card-text">{{plat.desc}}</p>
+                <textarea maxlength="499" id="desc" [minRows]="5" [maxRows]="8" autosize [(ngModel)]="plat.desc" placeholder="description">
                 </textarea>
+                <div class="commandButton">
+                  <a href="http://localhost:49602/identification"><button>Commander</button></a>
+                  <button>+</button>
+                  <button>-</button>
                 </div>
+
+
+              </div>
             </div>
             <div id="infos" class="card bg-light mb-3">
                 <div class="card-header" > <h4>Informations</h4></div>
