@@ -4,7 +4,7 @@ import { Plat } from '../models/plat';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PlatService } from '../Services/plat.service';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { BadPriceComponent } from '../dialogs/bad-price/bad-price.component';
 
 

@@ -9,13 +9,16 @@
 
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
+          <!--Commander-->
+          <!--<li class="nav-item">
+                <a class="nav-link active" routerLink="/identification"> <span class="link">Commander</span>
+                <span class="visually-hidden">(current)</span>
+                </a>
+              </li>-->
+          <!--Commander-->
           <li class="nav-item">
-            <a class="nav-link active" routerLink="/identification"> <span class="link">Commander</span>
-              <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/identification"> <span class="link">Mes commandes</span>
+            <a class="nav-link active" routerLink="/identification">
+              <span class="link">Mes commandes</span>
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
@@ -42,6 +45,11 @@
           <li class="nav-item">
             <a href="/login" class="nav-link" routerLink="login">Login</a>
           </li>
+          <!--panier-->
+          <li class="nav-item">
+            <a href="/cart" class="nav-link" routerLink="cart">Panier</a>
+          </li>
+          <!--panier-->
         </ul>
         <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
           <li class="nav-item">

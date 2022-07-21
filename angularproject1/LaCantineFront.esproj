@@ -6,4 +6,40 @@
     <StartupCommand>npm start</StartupCommand>
     <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\app\panier\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\panier\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\panier\panier.component.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\panier\panier.component.spec.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\panier\panier.component.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\panier\panier.component.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\app\solde\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\solde\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\solde\solde.component.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\solde\solde.component.spec.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\solde\solde.component.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\solde\solde.component.css" />
+  </ItemGroup>
 </Project>
